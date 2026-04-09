@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 6 Crear un dataframe | R para Biólogos</title>
+  <meta name="description" content="El documento es un primer libro para aprender R para biólogos y otras áreas afines." />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 6 Crear un dataframe | R para Biólogos" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="El documento es un primer libro para aprender R para biólogos y otras áreas afines." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 6 Crear un dataframe | R para Biólogos" />
+  
+  <meta name="twitter:description" content="El documento es un primer libro para aprender R para biólogos y otras áreas afines." />
+  
+
+<meta name="author" content="Jordan Golubov, José Arévalo, José A. Aranda Pineda, María C. Mandujano" />
+
+
+<meta name="date" content="2026-04-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="importando-datos-a-r.html"/>
+<link rel="next" href="pasos-para-empezar-una-sesión-de-r.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> bookdown::html_book(“R #intro.Rmd”,,“bookdown::html_book”)</a></li>
+<li class="chapter" data-level="2" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html"><i class="fa fa-check"></i><b>2</b> Generalidades de R</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#otros-editoresambientes-posibles-de-utilizar-con-r"><i class="fa fa-check"></i><b>2.0.1</b> Otros editores–ambientes posibles de utilizar con <strong>R</strong></a></li>
+<li class="chapter" data-level="2.1" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#usando-r"><i class="fa fa-check"></i><b>2.1</b> Usando R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#la-primera-función-en-la-consola-de-r"><i class="fa fa-check"></i><b>2.1.1</b> La primera función en la consola de <strong>R</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#como-usuario-de-primera-ocasión-de-r"><i class="fa fa-check"></i><b>2.2</b> Como usuario de primera ocasión de R</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#script"><i class="fa fa-check"></i><b>2.2.1</b> Script</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#iniciar-con-el-subdirectorio-de-trabajo"><i class="fa fa-check"></i><b>2.3</b> Iniciar con el subdirectorio de trabajo</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#recordando-el-working-directory-setwd"><i class="fa fa-check"></i><b>2.3.1</b> Recordando el working directory (<code>setwd()</code>)</a></li>
+<li class="chapter" data-level="2.3.2" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#ejemplo-del-subdirectorio-de-trabajo-working-directory"><i class="fa fa-check"></i><b>2.3.2</b> Ejemplo del subdirectorio de trabajo (working directory)</a></li>
+<li class="chapter" data-level="2.3.3" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#conocer-el-subdirectorio-de-trabajo"><i class="fa fa-check"></i><b>2.3.3</b> Conocer el subdirectorio de trabajo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#una-mirada-rápida-al-script"><i class="fa fa-check"></i><b>2.4</b> Una mirada rápida al script</a></li>
+<li class="chapter" data-level="2.5" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#continuamos-conociendo-r"><i class="fa fa-check"></i><b>2.5</b> continuamos conociendo <strong>R</strong></a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#versión-de-r"><i class="fa fa-check"></i><b>2.5.1</b> Versión de <strong>R</strong></a></li>
+<li class="chapter" data-level="2.5.2" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#información-de-la-sesión"><i class="fa fa-check"></i><b>2.5.2</b> Información de la sesión</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="generalidades-de-r.html"><a href="generalidades-de-r.html#ahora-sí-a-trabajar-con-r"><i class="fa fa-check"></i><b>2.6</b> Ahora sí, a trabajar con <strong>R</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="usando-r-1.html"><a href="usando-r-1.html"><i class="fa fa-check"></i><b>3</b> Usando <strong>R</strong></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="usando-r-1.html"><a href="usando-r-1.html#r-como-calculadora"><i class="fa fa-check"></i><b>3.1</b> <strong>R</strong> como calculadora</a></li>
+<li class="chapter" data-level="3.2" data-path="usando-r-1.html"><a href="usando-r-1.html#división-de-enteros"><i class="fa fa-check"></i><b>3.2</b> División de enteros</a></li>
+<li class="chapter" data-level="3.3" data-path="usando-r-1.html"><a href="usando-r-1.html#exponente-negativo"><i class="fa fa-check"></i><b>3.3</b> Exponente negativo</a></li>
+<li class="chapter" data-level="3.4" data-path="usando-r-1.html"><a href="usando-r-1.html#logaritmos"><i class="fa fa-check"></i><b>3.4</b> Logaritmos</a></li>
+<li class="chapter" data-level="3.5" data-path="usando-r-1.html"><a href="usando-r-1.html#raíz-cuadrada"><i class="fa fa-check"></i><b>3.5</b> Raíz cuadrada</a></li>
+<li class="chapter" data-level="3.6" data-path="usando-r-1.html"><a href="usando-r-1.html#factoriales"><i class="fa fa-check"></i><b>3.6</b> Factoriales</a></li>
+<li class="chapter" data-level="3.7" data-path="usando-r-1.html"><a href="usando-r-1.html#funciones-para-el-redondeo"><i class="fa fa-check"></i><b>3.7</b> Funciones para el redondeo</a></li>
+<li class="chapter" data-level="3.8" data-path="usando-r-1.html"><a href="usando-r-1.html#creando-una-función"><i class="fa fa-check"></i><b>3.8</b> Creando una función</a></li>
+<li class="chapter" data-level="3.9" data-path="usando-r-1.html"><a href="usando-r-1.html#notación-científica"><i class="fa fa-check"></i><b>3.9</b> Notación científica</a></li>
+<li class="chapter" data-level="3.10" data-path="usando-r-1.html"><a href="usando-r-1.html#números-aleatorios"><i class="fa fa-check"></i><b>3.10</b> Números aleatorios</a></li>
+<li class="chapter" data-level="3.11" data-path="usando-r-1.html"><a href="usando-r-1.html#funciones-trigonométricas"><i class="fa fa-check"></i><b>3.11</b> Funciones trigonométricas</a></li>
+<li class="chapter" data-level="3.12" data-path="usando-r-1.html"><a href="usando-r-1.html#secuencias"><i class="fa fa-check"></i><b>3.12</b> Secuencias</a></li>
+<li class="chapter" data-level="3.13" data-path="usando-r-1.html"><a href="usando-r-1.html#ejemplo-de-una-función"><i class="fa fa-check"></i><b>3.13</b> Ejemplo de una función</a></li>
+<li class="chapter" data-level="3.14" data-path="usando-r-1.html"><a href="usando-r-1.html#repeticiones-más-complejas"><i class="fa fa-check"></i><b>3.14</b> repeticiones más complejas</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="objetos-en-r.html"><a href="objetos-en-r.html"><i class="fa fa-check"></i><b>4</b> Objetos en <strong>R</strong></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="objetos-en-r.html"><a href="objetos-en-r.html#creación-de-objetos"><i class="fa fa-check"></i><b>4.1</b> Creación de objetos</a></li>
+<li class="chapter" data-level="4.2" data-path="objetos-en-r.html"><a href="objetos-en-r.html#asignación-o-generación-de-un-objeto"><i class="fa fa-check"></i><b>4.2</b> Asignación o generación de un objeto</a></li>
+<li class="chapter" data-level="4.3" data-path="objetos-en-r.html"><a href="objetos-en-r.html#los-datos-en-r"><i class="fa fa-check"></i><b>4.3</b> Los Datos en <strong>R</strong></a></li>
+<li class="chapter" data-level="4.4" data-path="objetos-en-r.html"><a href="objetos-en-r.html#de-objetos-y-funciones"><i class="fa fa-check"></i><b>4.4</b> De objetos y funciones</a></li>
+<li class="chapter" data-level="4.5" data-path="objetos-en-r.html"><a href="objetos-en-r.html#vectores"><i class="fa fa-check"></i><b>4.5</b> Vectores</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="objetos-en-r.html"><a href="objetos-en-r.html#más-sobre-organización"><i class="fa fa-check"></i><b>4.5.1</b> Más sobre organización</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="objetos-en-r.html"><a href="objetos-en-r.html#matrices"><i class="fa fa-check"></i><b>4.6</b> Matrices</a></li>
+<li class="chapter" data-level="4.7" data-path="objetos-en-r.html"><a href="objetos-en-r.html#listas"><i class="fa fa-check"></i><b>4.7</b> Listas</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="objetos-en-r.html"><a href="objetos-en-r.html#lista"><i class="fa fa-check"></i><b>4.7.1</b> Lista</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="objetos-en-r.html"><a href="objetos-en-r.html#marcos-de-datos-o-estructuras-de-datos-o-data-frame-dataframe"><i class="fa fa-check"></i><b>4.8</b> Marcos de datos o estructuras de datos o data frame (dataframe)</a></li>
+<li class="chapter" data-level="4.9" data-path="objetos-en-r.html"><a href="objetos-en-r.html#funciones"><i class="fa fa-check"></i><b>4.9</b> Funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="importando-datos-a-r.html"><a href="importando-datos-a-r.html"><i class="fa fa-check"></i><b>5</b> Importando datos a R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="importando-datos-a-r.html"><a href="importando-datos-a-r.html#guardando-datos"><i class="fa fa-check"></i><b>5.1</b> Guardando datos</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="crear-un-dataframe.html"><a href="crear-un-dataframe.html"><i class="fa fa-check"></i><b>6</b> Crear un dataframe</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="crear-un-dataframe.html"><a href="crear-un-dataframe.html#primeras-instrucciones"><i class="fa fa-check"></i><b>6.1</b> Primeras instrucciones</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="pasos-para-empezar-una-sesión-de-r.html"><a href="pasos-para-empezar-una-sesión-de-r.html"><i class="fa fa-check"></i><b>7</b> Pasos para empezar una sesión de R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="pasos-para-empezar-una-sesión-de-r.html"><a href="pasos-para-empezar-una-sesión-de-r.html#otras-funciones-para-manejar-la-memoria-de-r"><i class="fa fa-check"></i><b>7.1</b> otras funciones para manejar la memoria de <strong>R</strong></a></li>
+<li class="chapter" data-level="7.2" data-path="pasos-para-empezar-una-sesión-de-r.html"><a href="pasos-para-empezar-una-sesión-de-r.html#consulta-y-conocimiento-de-la-base-de-datos"><i class="fa fa-check"></i><b>7.2</b> Consulta y conocimiento de la base de datos</a></li>
+<li class="chapter" data-level="7.3" data-path="pasos-para-empezar-una-sesión-de-r.html"><a href="pasos-para-empezar-una-sesión-de-r.html#estructura-de-una-base-de-datos"><i class="fa fa-check"></i><b>7.3</b> Estructura de una base de datos</a></li>
+<li class="chapter" data-level="7.4" data-path="pasos-para-empezar-una-sesión-de-r.html"><a href="pasos-para-empezar-una-sesión-de-r.html#creando-su-propio-archivo"><i class="fa fa-check"></i><b>7.4</b> Creando su propio archivo</a></li>
+<li class="chapter" data-level="7.5" data-path="pasos-para-empezar-una-sesión-de-r.html"><a href="pasos-para-empezar-una-sesión-de-r.html#datos-dentro-de-r"><i class="fa fa-check"></i><b>7.5</b> Datos dentro de <strong>R</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="manuales-y-paquetes.html"><a href="manuales-y-paquetes.html"><i class="fa fa-check"></i><b>8</b> Manuales y paquetes</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="manuales-y-paquetes.html"><a href="manuales-y-paquetes.html#ayuda"><i class="fa fa-check"></i><b>8.1</b> Ayuda</a></li>
+<li class="chapter" data-level="8.2" data-path="manuales-y-paquetes.html"><a href="manuales-y-paquetes.html#paquetes"><i class="fa fa-check"></i><b>8.2</b> Paquetes</a></li>
+<li class="chapter" data-level="8.3" data-path="manuales-y-paquetes.html"><a href="manuales-y-paquetes.html#la-paquetería-tidyverse"><i class="fa fa-check"></i><b>8.3</b> La paquetería tidyverse</a></li>
+<li class="chapter" data-level="8.4" data-path="manuales-y-paquetes.html"><a href="manuales-y-paquetes.html#el-paquete-vegan"><i class="fa fa-check"></i><b>8.4</b> El paquete vegan</a></li>
+<li class="chapter" data-level="8.5" data-path="manuales-y-paquetes.html"><a href="manuales-y-paquetes.html#otras-ayudas"><i class="fa fa-check"></i><b>8.5</b> Otras ayudas</a></li>
+<li class="chapter" data-level="8.6" data-path="manuales-y-paquetes.html"><a href="manuales-y-paquetes.html#usando-la-paquetearía"><i class="fa fa-check"></i><b>8.6</b> Usando la paquetearía</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="manuales-y-paquetes.html"><a href="manuales-y-paquetes.html#vegan"><i class="fa fa-check"></i><b>8.6.1</b> vegan</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="manuales-y-paquetes.html"><a href="manuales-y-paquetes.html#usando-las-funciones-dentro-del-paquete-vegan"><i class="fa fa-check"></i><b>8.7</b> Usando las funciones dentro del paquete vegan</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="manuales-y-paquetes.html"><a href="manuales-y-paquetes.html#indice-de-diversidad-de-simpson"><i class="fa fa-check"></i><b>8.7.1</b> Indice de diversidad de Simpson</a></li>
+<li class="chapter" data-level="8.7.2" data-path="manuales-y-paquetes.html"><a href="manuales-y-paquetes.html#diversidad-beta-índice-de-whittaker"><i class="fa fa-check"></i><b>8.7.2</b> Diversidad beta, índice de Whittaker</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="manuales-y-paquetes.html"><a href="manuales-y-paquetes.html#tarea"><i class="fa fa-check"></i><b>8.8</b> Tarea</a></li>
+<li class="chapter" data-level="8.9" data-path="manuales-y-paquetes.html"><a href="manuales-y-paquetes.html#para-hacer-la-función-de-diversidades-beta"><i class="fa fa-check"></i><b>8.9</b> Para hacer la función de diversidades beta</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>9</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="gráficos.html"><a href="gráficos.html#gráficos-en-r"><i class="fa fa-check"></i><b>9.1</b> Gráficos en R</a></li>
+<li class="chapter" data-level="9.2" data-path="gráficos.html"><a href="gráficos.html#parámetros-dentro-de-plot"><i class="fa fa-check"></i><b>9.2</b> Parámetros dentro de plot</a></li>
+<li class="chapter" data-level="9.3" data-path="gráficos.html"><a href="gráficos.html#símbolos"><i class="fa fa-check"></i><b>9.3</b> Símbolos</a></li>
+<li class="chapter" data-level="9.4" data-path="gráficos.html"><a href="gráficos.html#colores"><i class="fa fa-check"></i><b>9.4</b> Colores</a></li>
+<li class="chapter" data-level="9.5" data-path="gráficos.html"><a href="gráficos.html#guardando-gráficos"><i class="fa fa-check"></i><b>9.5</b> Guardando gráficos</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="gráficos.html"><a href="gráficos.html#rstudio"><i class="fa fa-check"></i><b>9.5.1</b> <strong>Rstudio</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="gráficos.html"><a href="gráficos.html#ejercicio-con-datos"><i class="fa fa-check"></i><b>9.6</b> Ejercicio con datos</a></li>
+<li class="chapter" data-level="9.7" data-path="gráficos.html"><a href="gráficos.html#gráficas"><i class="fa fa-check"></i><b>9.7</b> Gráficas</a></li>
+<li class="chapter" data-level="9.8" data-path="gráficos.html"><a href="gráficos.html#gráficas-de-factores-y-variables-continuas"><i class="fa fa-check"></i><b>9.8</b> Gráficas de factores y variables continuas</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="gráficos.html"><a href="gráficos.html#gráfico-stripchart"><i class="fa fa-check"></i><b>9.8.1</b> gráfico stripchart</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="gráficos.html"><a href="gráficos.html#el-paquete-ggplot"><i class="fa fa-check"></i><b>9.9</b> El paquete ggplot</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="gráficos.html"><a href="gráficos.html#diagramas-de-caja-y-bigote"><i class="fa fa-check"></i><b>9.9.1</b> Diagramas de caja y bigote</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="pueba-de-t.html"><a href="pueba-de-t.html"><i class="fa fa-check"></i><b>10</b> Pueba de t</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="pueba-de-t.html"><a href="pueba-de-t.html#usemos-unos-datos."><i class="fa fa-check"></i><b>10.1</b> Usemos unos datos.</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="regresión.html"><a href="regresión.html"><i class="fa fa-check"></i><b>11</b> Regresión</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="regresión.html"><a href="regresión.html#principios-de-estadística"><i class="fa fa-check"></i><b>11.1</b> Principios de estadística</a></li>
+<li class="chapter" data-level="11.2" data-path="regresión.html"><a href="regresión.html#selección-de-método-estadístico-según-el-tipo-de-variable"><i class="fa fa-check"></i><b>11.2</b> Selección de método estadístico según el tipo de variable:</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="regresión.html"><a href="regresión.html#la-regresión"><i class="fa fa-check"></i><b>11.2.1</b> La regresión</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="regresión.html"><a href="regresión.html#el-ejemplo"><i class="fa fa-check"></i><b>11.3</b> El ejemplo</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="regresión.html"><a href="regresión.html#ejercicios-para-la-regresión"><i class="fa fa-check"></i><b>11.3.1</b> Ejercicios para la regresión</a></li>
+<li class="chapter" data-level="11.3.2" data-path="regresión.html"><a href="regresión.html#resultado"><i class="fa fa-check"></i><b>11.3.2</b> Resultado</a></li>
+<li class="chapter" data-level="11.3.3" data-path="regresión.html"><a href="regresión.html#diagnóstico-de-la-regresión-con-r"><i class="fa fa-check"></i><b>11.3.3</b> Diagnóstico de la regresión con <strong>R</strong></a></li>
+<li class="chapter" data-level="11.3.4" data-path="regresión.html"><a href="regresión.html#peso-seco-en-horno-biomasa-y-circunferencia-de-la-corona-de-una-muestra-de-guayule."><i class="fa fa-check"></i><b>11.3.4</b> Peso seco en horno (biomasa) y circunferencia de la corona de una muestra de Guayule.</a></li>
+<li class="chapter" data-level="11.3.5" data-path="regresión.html"><a href="regresión.html#se-condujo-un-experimento-con-el-fin-de-estudiar-el-efecto-de-un-cierto-medicamento-sobre-el-ritmo-cardiaco-de-los-pacientes."><i class="fa fa-check"></i><b>11.3.5</b> Se condujo un experimento con el fin de estudiar el efecto de un cierto medicamento sobre el ritmo cardiaco de los pacientes.</a></li>
+<li class="chapter" data-level="11.3.6" data-path="regresión.html"><a href="regresión.html#los-siguientes-datos-muestras-las-densidades-opticas-de-clorofila-dependiendo-del-nivel-de-concentración"><i class="fa fa-check"></i><b>11.3.6</b> Los siguientes datos muestras las densidades opticas de clorofila dependiendo del nivel de concentración</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><a href="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><i class="fa fa-check"></i><b>12</b> Tablas de contingencia y pruebas de bondad de ajuste</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><a href="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html#requisitos"><i class="fa fa-check"></i><b>12.1</b> Requisitos</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><a href="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html#tipos-de-hipótesis"><i class="fa fa-check"></i><b>12.1.1</b> Tipos de hipótesis</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><a href="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html#ejemplo-1"><i class="fa fa-check"></i><b>12.2</b> Ejemplo 1</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><a href="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html#ejemplo-2"><i class="fa fa-check"></i><b>12.2.1</b> Ejemplo 2</a></li>
+<li class="chapter" data-level="12.2.2" data-path="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><a href="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html#ejemplo-3"><i class="fa fa-check"></i><b>12.2.2</b> Ejemplo 3</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><a href="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html#graficar-primero"><i class="fa fa-check"></i><b>12.3</b> Graficar primero</a></li>
+<li class="chapter" data-level="12.4" data-path="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><a href="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html#expresión-matemática"><i class="fa fa-check"></i><b>12.4</b> Expresión matemática</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><a href="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html#los-grados-de-libertad"><i class="fa fa-check"></i><b>12.4.1</b> Los grados de libertad</a></li>
+<li class="chapter" data-level="12.4.2" data-path="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><a href="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html#la-hipótesis"><i class="fa fa-check"></i><b>12.4.2</b> La Hipótesis</a></li>
+<li class="chapter" data-level="12.4.3" data-path="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><a href="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html#section"><i class="fa fa-check"></i><b>12.4.3</b> </a></li>
+<li class="chapter" data-level="12.4.4" data-path="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><a href="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html#regla-de-decisión"><i class="fa fa-check"></i><b>12.4.4</b> Regla de decisión</a></li>
+<li class="chapter" data-level="12.4.5" data-path="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html"><a href="tablas-de-contingencia-y-pruebas-de-bondad-de-ajuste.html#si-lo-hacemos-en-r-resulta-lo-siguiente"><i class="fa fa-check"></i><b>12.4.5</b> Si lo hacemos en R resulta lo siguiente:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="anova-análisis-de-varianza.html"><a href="anova-análisis-de-varianza.html"><i class="fa fa-check"></i><b>13</b> Anova (Análisis de varianza)</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="anova-análisis-de-varianza.html"><a href="anova-análisis-de-varianza.html#variación-dentro-de-grupos"><i class="fa fa-check"></i><b>13.1</b> Variación dentro de grupos</a></li>
+<li class="chapter" data-level="13.2" data-path="anova-análisis-de-varianza.html"><a href="anova-análisis-de-varianza.html#ss-total"><i class="fa fa-check"></i><b>13.2</b> SS Total</a></li>
+<li class="chapter" data-level="13.3" data-path="anova-análisis-de-varianza.html"><a href="anova-análisis-de-varianza.html#varianzas"><i class="fa fa-check"></i><b>13.3</b> Varianzas</a></li>
+<li class="chapter" data-level="13.4" data-path="anova-análisis-de-varianza.html"><a href="anova-análisis-de-varianza.html#el-estadístico-f"><i class="fa fa-check"></i><b>13.4</b> El estadístico F</a></li>
+<li class="chapter" data-level="13.5" data-path="anova-análisis-de-varianza.html"><a href="anova-análisis-de-varianza.html#ahora-usemos-la-versión-corta-en-r"><i class="fa fa-check"></i><b>13.5</b> Ahora usemos la versión corta en <strong>R</strong></a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="anova-análisis-de-varianza.html"><a href="anova-análisis-de-varianza.html#prueva-de-diferencias-entre-las-medias-tukey-test."><i class="fa fa-check"></i><b>13.5.1</b> Prueva de diferencias entre las medias, Tukey test.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="14" data-path="manuales-y-paquetes-1.html"><a href="manuales-y-paquetes-1.html"><i class="fa fa-check"></i><b>14</b> Manuales y paquetes</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="manuales-y-paquetes-1.html"><a href="manuales-y-paquetes-1.html#ayuda-1"><i class="fa fa-check"></i><b>14.1</b> Ayuda</a></li>
+<li class="chapter" data-level="14.2" data-path="manuales-y-paquetes-1.html"><a href="manuales-y-paquetes-1.html#paquetes-1"><i class="fa fa-check"></i><b>14.2</b> Paquetes</a></li>
+<li class="chapter" data-level="14.3" data-path="manuales-y-paquetes-1.html"><a href="manuales-y-paquetes-1.html#la-paquetería-tidyverse-1"><i class="fa fa-check"></i><b>14.3</b> La paquetería tidyverse</a></li>
+<li class="chapter" data-level="14.4" data-path="manuales-y-paquetes-1.html"><a href="manuales-y-paquetes-1.html#el-paquete-vegan-1"><i class="fa fa-check"></i><b>14.4</b> El paquete vegan</a></li>
+<li class="chapter" data-level="14.5" data-path="manuales-y-paquetes-1.html"><a href="manuales-y-paquetes-1.html#otras-ayudas-1"><i class="fa fa-check"></i><b>14.5</b> Otras ayudas</a></li>
+<li class="chapter" data-level="14.6" data-path="manuales-y-paquetes-1.html"><a href="manuales-y-paquetes-1.html#usando-la-paquetearía-1"><i class="fa fa-check"></i><b>14.6</b> Usando la paquetearía</a>
+<ul>
+<li class="chapter" data-level="14.6.1" data-path="manuales-y-paquetes-1.html"><a href="manuales-y-paquetes-1.html#vegan-1"><i class="fa fa-check"></i><b>14.6.1</b> vegan</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="manuales-y-paquetes-1.html"><a href="manuales-y-paquetes-1.html#usando-las-funciones-dentro-del-paquete-vegan-1"><i class="fa fa-check"></i><b>14.7</b> Usando las funciones dentro del paquete vegan</a>
+<ul>
+<li class="chapter" data-level="14.7.1" data-path="manuales-y-paquetes-1.html"><a href="manuales-y-paquetes-1.html#indice-de-diversidad-de-simpson-1"><i class="fa fa-check"></i><b>14.7.1</b> Indice de diversidad de Simpson</a></li>
+<li class="chapter" data-level="14.7.2" data-path="manuales-y-paquetes-1.html"><a href="manuales-y-paquetes-1.html#diversidad-beta-índice-de-whittaker-1"><i class="fa fa-check"></i><b>14.7.2</b> Diversidad beta, índice de Whittaker</a></li>
+</ul></li>
+<li class="chapter" data-level="14.8" data-path="manuales-y-paquetes-1.html"><a href="manuales-y-paquetes-1.html#tarea-1"><i class="fa fa-check"></i><b>14.8</b> Tarea</a></li>
+<li class="chapter" data-level="14.9" data-path="manuales-y-paquetes-1.html"><a href="manuales-y-paquetes-1.html#para-hacer-la-función-de-diversidades-beta-1"><i class="fa fa-check"></i><b>14.9</b> Para hacer la función de diversidades beta</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R para Biólogos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="crear-un-dataframe" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Capítulo 6</span> Crear un dataframe<a href="crear-un-dataframe.html#crear-un-dataframe" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="primeras-instrucciones" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Primeras instrucciones<a href="crear-un-dataframe.html#primeras-instrucciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La primera actividad en una sesión de <strong>R</strong> es definir el directorio de trabajo. Es recomendable crear un subdirectorio (carpeta) de trabajo previamente para las bases de datos. Es importante la definición del directorio ya que se puede tener un seguimientos histórico de las diferentes actividades y análisis realizados a nuestra base de datos. La declaración del directorio de trabajo se hace mediante una función de <strong>R</strong> que tiene el formato <code>funcion()</code>. Las funciones en <strong>R</strong> tienen dos elementos: el nombre de la función y los argumentos de la función dentro del paréntesis <code>()</code>. Después de creado el subdirectorio de trabajo, se inicia la sesión de <strong>R</strong> en el mismo subdirectorio. El subdirectorio de trabajo contiene la(s) base(s) de datos, previamente organizada en columnas (variables). Los comandos que se utilizan son <code>setwd()</code> para declarar al directorio de trabajo y <code>getwd()</code> para consultar el subdirectorio.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="importando-datos-a-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pasos-para-empezar-una-sesión-de-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/03-Objetos-en-R.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["R-para-Biologos.pdf", "R-para-Biologos.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>
