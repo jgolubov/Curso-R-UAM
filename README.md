@@ -5,6 +5,5 @@ y otros son bases de datos de otras fuentes públicas.
 Los datos son de diversa índole y se pueden hacer análisis simples como regresión, ANOVA, pruebas de t y ji cuadrada. 
 Tambien se pueden hacer análisis más complicados con los mismos datos como GLM.
 
-Los códigos en R son todos generados por J. Golubov y son de libre acceso, pueden copiarlos modificarlos y
-hacer lo que quieran con ellos.
+Los códigos en R son todos generados por J. Golubov y J Arèvalo del Laboratorio de Taxonomìa y Sistemàtica Vegetal de la Universidad Autònoma Metropolitana Xochimilco y son de libre acceso, pueden copiarlos modificarlos.
 
